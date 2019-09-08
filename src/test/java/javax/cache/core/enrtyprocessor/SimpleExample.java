@@ -28,8 +28,8 @@ public class SimpleExample {
         mutableConfiguration.setReadThrough(true);
         mutableConfiguration.setCacheLoaderFactory(FactoryBuilder.factoryOf(ReadThroughLoader.class));
 
-        //配置readThrough
-        mutableConfiguration.setReadThrough(true);
+        //配置writeThrough
+        mutableConfiguration.setWriteThrough(true);
         mutableConfiguration.setCacheWriterFactory(FactoryBuilder.factoryOf(WriteThroughWriter.class));
 
         //创建缓存
@@ -37,9 +37,11 @@ public class SimpleExample {
 
         cache.put("key1","value1");
 
+        System.out.println("-----------");
         String value = cache.invoke("key", new ReadThroughEntryProcessor());
-
+        System.out.println("-----------");
         String value1 = cache.invoke("key1", new ReadThroughEntryProcessor());
+
 
         System.out.println("获取的值:"+value);
         System.out.println("获取的值:"+value1);

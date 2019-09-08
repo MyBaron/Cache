@@ -27,25 +27,15 @@ public class CacheDemos {
         //创建一个缓存管理器
         CacheManager manager = Caching.getCachingProvider().getCacheManager();
         //创建一个配置管理器
-        Configuration<Integer, String> configuration = new MutableConfiguration<Integer, String>().setTypes(Integer.class, String.class);
+        Configuration<String, String> configuration = new MutableConfiguration<String, String>().setTypes(String.class, String.class);
         //生成一个缓存对象
-        Cache<Integer, String> simpleCache;
+        Cache<String, String> simpleCache;
         //缓存数据
         simpleCache = manager.createCache("simpleCache22", configuration);
-        simpleCache.put(2, "value");
+        simpleCache.put("baron", "china");
         //获取数据
-        String value = simpleCache.get(2);
+        String value = simpleCache.get("baron");
         System.out.println("Value: " + value);
-
-        //创建一个配置管理器
-        Configuration configuration1 = new MutableConfiguration<>();
-        //生成一个缓存对象
-        Cache<Integer, String> simpleCache1;
-        //缓存数据
-        simpleCache1 = manager.createCache("simpleCache222", configuration1);
-        Cache<String, String> simpleCache222 = manager.getCache("simpleCache222",String.class,String.class);
-        simpleCache222.put("k","s");
-
 
     }
 
